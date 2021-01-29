@@ -2,7 +2,8 @@
 // Created by lsc on 21-01-29.
 //
 
-#include "../include/tea++/utils/string_t.h"
+#include <tea++/utils/string_t.h>
+#include <tea++/utils/expect.h>
 
 
 namespace teacc
@@ -485,6 +486,7 @@ string_t::bce &string_t::bce::operator>>(string_t::word &w)
     w.l = line;
     w.c = col;
     w.pos = i = (uint64_t) (c - b);
+
     return *this;
 }
 

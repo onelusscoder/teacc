@@ -4,6 +4,7 @@
 
 #include <tea++/diagnostics/application.h>
 
+#include <map>
 
 
 namespace teacc::diagnostics
@@ -21,5 +22,6 @@ application::application(const string_t::collection &args)
 {
 
 }
+
 
 }

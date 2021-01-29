@@ -8,6 +8,7 @@
 
 #pragma once
 #include <tea++/utils/colors.h>
+#include <tea++/diagnostics/diagnostic.h>
 
 
 namespace teacc::diagnostics
@@ -20,11 +21,16 @@ namespace teacc::diagnostics
 class application
 {
 public:
+    
+    using status = expect<diagnostic::code>;
+    
     application();
     application(string_t::collection const& args);
     
     
     virtual ~application();
+    
+    virtual status run();
     
 };
 
