@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 # Project name
 
-project(logger VERSION 0.1.0 LANGUAGES CXX)
+project(utils VERSION 0.1.0 LANGUAGES CXX)
 
 
 include(GNUInstallDirs)
-message("TEALOG_INCLUDE_PATH:" ${TEALOG_INCLUDE_DIR})
+message("UTILS_INCLUDE_PATH:" ${UTILS_INCLUDE_DIR})
 
-FILE(GLOB HDRS ${TEALOG_INCLUDE_DIR}/*)
+FILE(GLOB HDRS ${UTILS_INCLUDE_DIR}/*)
 FILE(GLOB SRCS src/*)
 SET( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 
@@ -37,8 +37,6 @@ IF( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json" )
 			)
 ENDIF()
 
-add_dependencies(${PROJECT_NAME} utils)
-
 #if(PACKAGE_TESTS)
 #    enable_testing()
 #    include(googletest)
@@ -49,22 +47,12 @@ add_dependencies(${PROJECT_NAME} utils)
 #        SOVERSION
 #        )
 
-list(
-    APPEND INCLUDE_PATHS
-    "${UTILS_INCLUDE_DIR}"
-    "${TEALOG_INCLUDE_DIR}"
-
-)
-
-
-message("PATHS : " ${INCLUDE_PATHS})
-
 target_include_directories(${PROJECT_NAME} PUBLIC
-    "$<BUILD_INTERFACE:${INCLUDE_PATHS}>"
+    "$<BUILD_INTERFACE:${TEALOG_INCLUDE_DIR}>"
         $<INSTALL_INTERFACE:include/${FrameWorkName}/${PROJECT_NAME}>  # <prefix>/include/mylib
         )
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS} utils)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS} )
 
 
 install(DIRECTORY
