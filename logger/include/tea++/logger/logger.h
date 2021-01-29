@@ -8,7 +8,7 @@
 // Code template modified by oldlonesomecoder.
 #pragma once
 
-#include <tea++/utils/string_t.h>
+#include <tea++/utils/colors.h>
 
 
 namespace teacc
@@ -17,6 +17,16 @@ namespace teacc
 class logger
 {
 
+public:
+    enum class output_types :uint8_t
+    {
+        type_ansi,
+        type_html,
+        type_plain
+    };
+    
+    logger();
+    
 };
 
 }
