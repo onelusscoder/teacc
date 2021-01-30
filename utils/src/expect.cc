@@ -3,12 +3,3 @@
 //
 
 #include <tea++/utils/expect.h>
-
-#include <map>
-#include <string_view>
-
-namespace teacc::diagnostic
-{
-
-
-}

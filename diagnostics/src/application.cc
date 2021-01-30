@@ -4,24 +4,29 @@
 
 #include <tea++/diagnostics/application.h>
 
-#include <map>
-
-
 namespace teacc::diagnostics
 {
 
-application::application()
+
+application::application(int argc, char** argv)
 {
-
+    string_t::collection args;
+    string_t::argv(args, argc, argv);
+    
 }
-application::~application()
+application::status application::run()
 {
-
+    diagnostic::object::vlist l;
+    diagnostic::object::push(l) | "testing object::push and clear";
+    
+    diagnostic::object::clear(l, [](diagnostic::object& o) -> void {
+        std::cout << ">" << o.text.c_str() << '\n';
+    });
+    
+    
+    std::cout << debuglfn.text() << '\n';
+    
+    return diagnostic::implement;
 }
-application::application(const string_t::collection &args)
-{
-
-}
-
 
 }

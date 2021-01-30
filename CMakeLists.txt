@@ -12,7 +12,10 @@ option(BUILD_TEALOG "Enable building the TEALOG ( tea_log ) utility library" ON)
 #option(BUILD_APPBOOK "Enable building the AppBook Library" ON)
 option(BUILD_DIAGNOSTICS "Enable building the Diagnostics Library" ON)
 #option(BUILD_TAA "Enable building the Terminal Application Api" OFF)
+option(BUILD_TESTS "Build the tests application based on the Diagnostics framework" ON)
+
 #
+
 SET(FRAMEWORK_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 
 message("Framework Root path:" ${FRAMEWORK_ROOT})
@@ -48,6 +51,10 @@ endif()
 #    add_subdirectory(TerminalAppApi)
 #endif()
 #
+#
+if(BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
 #
 #if(BUILD_APPBOOK)
 #    SET(APPBOOK_INCLUDE_DIR ${LSC_ROOT}/AppBook/include)

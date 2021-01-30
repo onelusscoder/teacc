@@ -8,6 +8,8 @@
 
 #pragma once
 #include <tea++/utils/colors.h>
+#include <tea++/utils/expect.h>
+
 #include <tea++/diagnostics/diagnostic.h>
 
 
@@ -24,11 +26,11 @@ public:
     
     using status = expect<diagnostic::code>;
     
-    application();
-    application(string_t::collection const& args);
+    application() = default;
+    application(int argc, char** argv);
     
     
-    virtual ~application();
+    virtual ~application() = default;
     
     virtual status run();
     

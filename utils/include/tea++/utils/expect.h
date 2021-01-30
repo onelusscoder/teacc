@@ -18,9 +18,6 @@ namespace teacc
 {
 
 
-
-
-
 template<typename T> class expect
 {
     bool good = false;
@@ -28,8 +25,8 @@ template<typename T> class expect
     
 public:
     expect() = default;
-    expect(T d_) : _d(std::move(d_)){ good = true;};
-    expect(expect&& ) = default;
+    expect(T d_) : _d(std::move(d_)){ good = true;}
+    expect(expect&& ) noexcept = default;
     
     
     
@@ -40,10 +37,13 @@ public:
     expect& operator=(T&& d_) { _d = std::move(d_); good = true; return *this; }
     expect& operator=(bool good_) { good = good_; return *this; }
     
+    
+    // ---- T must be constructible:
     T operator()(){ if(!good) return T(); else  return _d; }
     T operator*(){  if(!good) return T(); else  return _d; }
+    // -------------------------------
     
-    operator bool() { return good; }
+    explicit operator bool() { return good; }
     
 };
 

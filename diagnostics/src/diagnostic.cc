@@ -1,6 +1,7 @@
 //
 // Created by lsc on 21-01-29.
 //
+#include <tea++/utils/string_t.h>
 
 #include <tea++/diagnostics/diagnostic.h>
 
@@ -10,18 +11,14 @@
 namespace teacc::diagnostic
 {
 
-static std::map<T,std::string_view> _dictionary;
+static std::map<code,std::string_view> _dictionary;
 
 
-std::string code::text() const
+
+
+std::size_t object::append(code cc, std::string_view &&txt)
 {
-    return std::string(_dictionary[_d]);
-}
-
-
-std::size_t code::append(T cc, std::string txt_)
-{
-    _dictionary[cc] = txt_;
+    _dictionary[cc] = txt;
     return _dictionary.size();
 }
 
@@ -40,26 +37,100 @@ This of course assumes that after the merge, you're only interested in the resul
  * @return std::size_t count of items in the dictionary.
  */
  
-std::size_t code::init()
+std::size_t object::init()
 {
     if(!_dictionary.empty()) return _dictionary.size();
+    // testing std::map::merge:
     _dictionary = {
-        {diagnostic::accepted, "accepted"},
-        {diagnostic::failed,   "failed"},
-        {diagnostic::implement, "implement"},
-        {diagnostic::ok,       "ok"},
-        {diagnostic::success,  "success"},
-        {diagnostic::error,  "error"},
-        {diagnostic::warning,  "warning"},
-        {diagnostic::fatal,  "fatal"},
-        {diagnostic::info,  "info"},
+        {diagnostic::accepted   , "accepted"},
+        {diagnostic::failed     , "failed"},
+        {diagnostic::implement  , "implement"},
+        {diagnostic::ok         , "ok"},
+        {diagnostic::success    , "success"},
+        {diagnostic::error      , "error"},
+        {diagnostic::warning    , "warning"},
+        {diagnostic::fatal      , "fatal"},
+        {diagnostic::info       , "info"},
+        {diagnostic::debug      , "debug"},
+        {diagnostic::application, "application"},
     };
+    
+    
+    
     return _dictionary.size();
 }
-std::size_t code::append(std::map<T, std::string_view> &&m_)
+std::size_t object::append(std::map<code, std::string_view> m_)
 {
-    _dictionary.merge(std::move(m_));
+    _dictionary.merge(m_);
     return _dictionary.size();
+}
+object &object::push(object::vlist& l)
+{
+    l.push(object());
+    return l.top();
+}
+
+object &object::operator|(code c)
+{
+    text += _dictionary[c];
+    return *this;
+}
+
+
+object &object::operator|(const char *txt)
+{
+    text += txt;
+    return *this;
+}
+
+
+object &object::operator|(std::string txt)
+{
+    text += txt;
+    return *this;
+}
+
+
+object &object::operator|(string_t txt)
+{
+    text += txt.c_str();
+    return *this;
+}
+void object::clear(object::vlist &list, const std::function<void(diagnostic::object &)>& lambda_fn)
+{
+    if(list.empty()) return;
+    do{
+      if(lambda_fn)
+          lambda_fn(list.top());
+      list.pop();
+    }while(!list.empty());
+}
+
+object::object(code c_, const char *file_name, int line_, const char *fn_name)
+{
+    if(file_name)
+    {
+        text +=  color::ansi(color::White);
+        text +=  file_name;
+        text +=  color::ansi(color::Blue);
+        text += "::";
+    }
+    if(line_)
+    {
+        std::ostringstream os;
+        os << line_;
+        text += os.str();
+        text += ':';
+    }
+    if(fn_name)
+    {
+        text << color::ansi(color::Yellow) << fn_name;
+        text << ':';
+    }
+    
+    text += _dictionary[c_];
+    text += " - ";
+    
 }
 
 }

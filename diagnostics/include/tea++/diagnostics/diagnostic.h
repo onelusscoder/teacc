@@ -9,46 +9,61 @@
 #pragma once
 
 
-#include <tea++/utils/expect.h>
+#include <tea++/utils/colors.h>
 #include <string_view>
 #include <map>
-
+#include <stack>
 
 namespace teacc::diagnostic
 {
-    using T = uint32_t;
+    using code = uint32_t;
+    //using type = uint8_t;
     //...
-    T constexpr accepted    = 0;
-    T constexpr success     = 1;
-    T constexpr ok          = 2;
-    T constexpr failed      = 4;
-    T constexpr implement   = 5;
-    T constexpr error       = 6;
-    T constexpr warning     = 7;
-    T constexpr fatal       = 8;
-    T constexpr info        = 9;
-    T constexpr __usr1__        = 10;
+    code constexpr accepted     = 0;
+    code constexpr success      = 1;
+    code constexpr ok           = 2;
+    code constexpr failed       = 4;
+    code constexpr implement    = 5;
+    code constexpr error        = 6;
+    code constexpr warning      = 7;
+    code constexpr fatal        = 8;
+    code constexpr info         = 9;
+    code constexpr debug        = 10;
+    code constexpr application  = 11;
+     //...
+    code constexpr diagnostic12_ = 12;
     
     
-    //...
-    
-    
-    struct code
+    struct object
     {
-        T _d=0;
+        code _d=0;
+        code _t =0;
+        using vlist = std::stack<object>;
+        string_t text;
         
-        code() = default;
-        code(T d_) : _d(d_) {};
-        virtual ~code() = default;
+        object() = default;
+        object(code d_) : _d(d_) {};
+        object(code c_, const char* file_name=nullptr, int line_=0, const char* fn_name=nullptr);
+        virtual ~object() = default;
         
-        std::string text() const;
-        static std::size_t append(T cc, std::string txt_);
-        static std::size_t append(std::map<T,std::string_view>&& m_);
+        static std::size_t append(code cc, std::string_view&& txt);
+        static std::size_t append(std::map<code,std::string_view> txt);
         static std::size_t init();
         
+        static object& push(object::vlist&);
         
+        object&  operator|(code);
+        object&  operator|(const char*);
+        object&  operator|(std::string);
+        object&  operator|(string_t);
+        
+        static void clear(object::vlist& list, const std::function<void(diagnostic::object&)>& lamda_fn);
         
     };
 }
+
+#define debuglfn teacc::diagnostic::object(teacc::diagnostic::debug, __FILE__, __LINE__, __FUNCTION__)
+
+
 
 //#endif //TEACC_DIAGNOSTIC_H

@@ -5,11 +5,12 @@
 
 #include <tea++/utils/colors.h>
 
-std::string& operator<<(std::string &s, teacc::color::name c)
+std::string teacc::color::ansi(teacc::color::name c)
 {
-    std::ostringstream os;
-    os <<  "\033[38;5" << static_cast<int>(c) << "m";
-    s += os.str();
-    return s;
+    string_t str;
+    str << "\033[38;5;%d";
+    str << static_cast<uint8_t>(c);
+    str += "m";
+    
+    return str();
 }
-

@@ -16,7 +16,7 @@ namespace teacc::color
 enum name
 {
     
-    /*0   */ Black            [[maybe_unused]]   ,//#000000	rgb(128,0,0)	hsl(0,100%,25%)
+    /*0   */ Black            [[maybe_unused]]   =0,//#000000	rgb(128,0,0)	hsl(0,100%,25%)
     /*1   */ Maroon           [[maybe_unused]]   ,//#800000	rgb(128,0,0)	hsl(0,100%,25%)
     /*2   */ Green            [[maybe_unused]]   ,//#008000	rgb(0,128,0)	hsl(120,100%,25%)
     /*3   */ Olive            [[maybe_unused]]   ,//#808000	rgb(128,128,0)	hsl(60,100%,25%)
@@ -276,10 +276,8 @@ enum name
 
 };
 
-std::string& operator << (std::string& os, color::name);
+std::string ansi(color::name c);
 
 }
-
-
 
 

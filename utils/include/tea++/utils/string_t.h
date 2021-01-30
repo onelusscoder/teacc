@@ -178,8 +178,8 @@ public:
     string_t &operator=(const char *d_)     { _d = d_; return *this; }
     
     string_t &operator+=(const string_t &d_){ _d += d_._d; return *this; }
-    string_t &operator+=(const std::string &d_) { _d = d_; return *this;}
-    string_t &operator+=(char c) { _d += c; return *this; };
+    string_t &operator+=(const std::string &d_) { _d += d_; return *this;}
+    string_t &operator+=(uint8_t c) { _d += c; return *this; };
     
     std::string operator+(const string_t &d_) { return _d + d_._d; }
     std::string operator+(const std::string &d_) { return _d + d_;};
@@ -236,7 +236,7 @@ public:
     string_t &operator<<(const string_t &d_);
     string_t &operator<<(const char *d_);
     string_t &operator<<(const std::string &d_);
-    string_t &operator<<(char c);
+    string_t &operator<<(uint8_t c);
     
     std::string extract_surround(const std::string &first_lhs, const std::string &first_rhs);
        /*!
