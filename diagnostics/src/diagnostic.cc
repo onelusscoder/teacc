@@ -96,6 +96,8 @@ object &object::operator|(string_t txt)
     text += txt.c_str();
     return *this;
 }
+
+
 void object::clear(object::vlist &list, const std::function<void(diagnostic::object &)>& lambda_fn)
 {
     if(list.empty()) return;
@@ -106,6 +108,14 @@ void object::clear(object::vlist &list, const std::function<void(diagnostic::obj
     }while(!list.empty());
 }
 
+
+/*!
+ * @brief Constructs the instance of object with file, line# and function name as the header informations.
+ * @param c_ diagnostic mnemonic code.
+ * @param file_name source file normally given by the macro __FILE__ if using this constructors from the corresponding macro.
+ * @param line_ line# given by the __LINE__ macro if using this constructors from the corresponding macro.
+ * @param fn_name  function name given by __FUNCTION__ macro if using this constructors from the corresponding macro.
+ */
 object::object(code c_, const char *file_name, int line_, const char *fn_name)
 {
     if(file_name)

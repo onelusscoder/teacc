@@ -8,10 +8,15 @@ test::test(int argc, char **argv) : application(argc, argv)
 {
 
 }
+
+
 test::~test()
 {
 
 }
+
+
+
 teacc::diagnostics::application::status test::run()
 {
     return application::run();
