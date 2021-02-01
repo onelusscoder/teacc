@@ -41,7 +41,7 @@ std::size_t object::init()
 {
     if(!_dictionary.empty()) return _dictionary.size();
     // testing std::map::merge:
-    _dictionary = {
+    std::map<code,std::string_view> _ = {
         {diagnostic::accepted   , "accepted"},
         {diagnostic::failed     , "failed"},
         {diagnostic::implement  , "implement"},
@@ -56,7 +56,7 @@ std::size_t object::init()
     };
     
     
-    
+    object::append(_);
     return _dictionary.size();
 }
 std::size_t object::append(std::map<code, std::string_view> m_)
