@@ -8,7 +8,7 @@ message ("**************** " ${FrameWorkName} " Master Project *****************
 option(BUILD_UTILS "Enable building the Utilities (utils) library" ON)
 option(BUILD_TEALOG "Enable building the TEALOG ( tea_log ) utility library" ON)
 #option(BUILD_VAULT "Enable building the Vault/[SQLite,...] Database support  Library" ON)
-#option(BUILD_SCRIPTURE "Enable building the Scripture interpreter Library" ON)
+#option(BUILD_TEASCRIPT "Enable building the tea++ [teascript])  interpreter Library" ON)
 #option(BUILD_APPBOOK "Enable building the AppBook Library" ON)
 option(BUILD_DIAGNOSTICS "Enable building the Diagnostics Library" ON)
 #option(BUILD_TAA "Enable building the Terminal Application Api" OFF)
@@ -35,9 +35,9 @@ endif()
 #    add_subdirectory(Vault)
 #endif()
 #
-#if(BUILD_SCRIPTURE)
-#    SET(SCRIPTURE_INCLUDE_DIR ${LSC_ROOT}/Scripture/include)
-#    add_subdirectory(Scripture)
+#if(BUILD_TEASCRIPT)
+#    SET(TEASCRIPT_INCLUDE_DIR ${LSC_ROOT}/teascript/include)
+#    add_subdirectory(teascript)
 #endif()
 #
 

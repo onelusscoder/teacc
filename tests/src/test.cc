@@ -10,10 +10,10 @@ test::test(int argc, char **argv) : application(argc, argv)
 }
 
 
-test::~test()
-{
-
-}
+//test::~test()
+//{
+//
+//}
 
 
 
@@ -28,4 +28,5 @@ auto main(int argc, char** argv) -> int {
     
     test app(argc, argv);
     app.run();
+    return 0;
 }

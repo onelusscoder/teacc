@@ -134,8 +134,8 @@ object::object(code c_, const char *file_name, int line_, const char *fn_name)
     }
     if(fn_name)
     {
-        text << color::ansi(color::Yellow) << fn_name;
-        text << ':';
+        text += color::ansi(color::Yellow) += fn_name;
+        text += ':';
     }
     
     text += _dictionary[c_];

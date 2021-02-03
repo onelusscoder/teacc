@@ -67,6 +67,8 @@ string_t &string_t::operator<<(const std::string &d_)
     return format(d_);
 }
 
+
+
 string_t &string_t::operator<<(uint8_t c)
 {
     if(scan_arg() == std::string::npos)

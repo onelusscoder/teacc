@@ -15,7 +15,7 @@ class test : public teacc::diagnostics::application
 {
 public:
     test(int argc, char** argv);
-    ~test() override;
+    ~test() override = default;
     
     
     teacc::diagnostics::application::status run() override;
