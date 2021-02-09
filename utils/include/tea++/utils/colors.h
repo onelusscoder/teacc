@@ -276,7 +276,7 @@ enum name
 
 };
 
-std::string ansi(color::name c);
+std::string UTILS ansi(color::name c);
 
 }
 

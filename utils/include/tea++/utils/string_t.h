@@ -23,12 +23,14 @@
 
 
 #include <functional>
+#include <tea++/utils/ll.h>
+
 
 namespace teacc
 {
 
 
-class string_t
+class UTILS string_t
 {
     std::string        _d;
     static std::string _null;
@@ -69,7 +71,7 @@ public:
     using iterator      = collection::iterator;
     using citerator     = collection::const_iterator;
     
-    struct word
+    struct UTILS word
     {
         std::string::const_iterator b;
         std::string::const_iterator e;
@@ -90,7 +92,7 @@ public:
         
         std::string location();
     };
-    
+private:
     struct bce
     {
         std::string::const_iterator b;
@@ -332,9 +334,9 @@ public:
         int x = cnt.size();
         for(auto item : cnt)
         {
-            ss << item;
+            ss += item;
             if(x-- > 1)
-                ss << ',';
+                ss += ',';
         }
         return ss();
     }

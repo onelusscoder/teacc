@@ -13,6 +13,7 @@
 #include <string_view>
 #include <map>
 #include <stack>
+#include <tea++/diagnostics/ll.h>
 
 namespace teacc::diagnostic
 {
@@ -33,11 +34,13 @@ namespace teacc::diagnostic
      //...
     code constexpr diagnostic12_ = 12;
     
-    
-    struct object
+    /*!
+    *  
+    */
+    struct DIAGNOSTICS object
     {
-        code _d=0;
-        code _t =0;
+        code _d = 0;
+        code _t = 0;
         using vlist = std::stack<object>;
         string_t text;
         
