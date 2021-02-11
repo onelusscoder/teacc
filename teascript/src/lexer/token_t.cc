@@ -145,6 +145,26 @@ token_t token_t::operator[](mnemonic::type m_)
     return token_t::_token_null;
 }
 
+std::string token_t::mark()
+{
+    return std::string();
+}
+
+std::string token_t::sem_types()
+{
+    return std::string();
+}
+
+std::string token_t::type_name()
+{
+    return std::string();
+}
+
+std::string token_t::details(bool mark_)
+{
+    return std::string();
+}
+
 
 
 

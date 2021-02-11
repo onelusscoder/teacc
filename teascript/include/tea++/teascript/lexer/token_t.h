@@ -62,6 +62,81 @@ namespace teacc::teascript
         token_t& operator=(const token_t& token_) = default;
         token_t operator[](mnemonic::type m_);
 
+        std::string mark();
+
+        explicit operator bool() const
+        {
+            return _location.begin != nullptr;
+        }
+
+        bool operator||(type_t::type sem_) const
+        {
+            return s || sem_;
+        }
+
+        [[nodiscard]] std::string text()
+        {
+            return _location();
+
+        }
+
+        [[nodiscard]] std::string sem_types();
+        [[nodiscard]] std::string type_name();
+        [[nodiscard]] std::string details(bool mark_ = false);
+
+        static token_t scan(const char* c_);
+
+        [[nodiscard]] bool is_binary() const
+        {
+            return s & type_t::binary_t;
+        }
+
+        [[nodiscard]] bool is_unary() const
+        {
+            return s & type_t::unary_t;
+        }
+
+        [[nodiscard]] bool is_identifier() const
+        {
+            return s & type_t::identifier;
+        }
+        [[nodiscard]] bool IsLeaf() const
+        {
+            return s & type_t::leaf_t;
+        }
+        [[nodiscard]] bool is_operator() const
+        {
+            return s & type_t::operator_t;
+        }
+        [[nodiscard]] bool isclosing_pair() const
+        {
+            return s & type_t::close_pair;
+        }
+        [[nodiscard]] bool is_punctuation() const
+        {
+            return s & type_t::punctuation;
+        }
+        [[nodiscard]] bool is_number() const
+        {
+            return s & type_t::number_t;
+        }
+        [[nodiscard]] bool is_hex() const
+        {
+            return s & type_t::hex_t;
+        }
+        [[nodiscard]] bool is_prefix() const
+        {
+            return s & type_t::prefix_t;
+        }
+        [[nodiscard]] bool is_postfix() const
+        {
+            return s & type_t::postfix_t;
+        }
+        [[nodiscard]] bool is_instruction() const
+        {
+            return !(s & (type_t::operator_t | type_t::leaf_t));
+        }
+
     };
 
 
