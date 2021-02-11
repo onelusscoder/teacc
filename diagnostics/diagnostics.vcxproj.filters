@@ -21,6 +21,9 @@
     <ClInclude Include="include\tea++\diagnostics\ll.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\diagnostic.cc">

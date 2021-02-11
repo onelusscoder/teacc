@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="include\tea++\diagnostics\diagnostic.h" />
     <ClInclude Include="include\tea++\diagnostics\ll.h" />
+    <ClInclude Include="test.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\diagnostic.cc" />

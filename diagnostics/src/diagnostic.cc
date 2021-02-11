@@ -143,4 +143,9 @@ object::object(code c_, const char *file_name, int line_, const char *fn_name)
     
 }
 
+diagnostic::code object::operator()()
+{
+    return diagnostic::implement;
+}
+
 }
