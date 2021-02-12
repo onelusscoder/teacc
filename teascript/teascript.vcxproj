@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\tea++\teascript\lexer\lexer.h" />
     <ClInclude Include="include\tea++\teascript\lexer\token_t.h" />
     <ClInclude Include="include\tea++\teascript\ll.h" />
     <ClInclude Include="include\tea++\teascript\type_t.h" />
@@ -160,6 +161,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\lexer\lexer.cc" />
     <ClCompile Include="src\lexer\token_t.cc" />
     <ClCompile Include="src\type_t.cc" />
   </ItemGroup>

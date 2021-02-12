@@ -24,12 +24,18 @@
     <ClInclude Include="include\tea++\teascript\lexer\token_t.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="include\tea++\teascript\lexer\lexer.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\type_t.cc">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\lexer\token_t.cc">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lexer\lexer.cc">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

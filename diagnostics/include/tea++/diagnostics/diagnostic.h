@@ -31,8 +31,9 @@ namespace teacc::diagnostic
     code constexpr info         = 9;
     code constexpr debug        = 10;
     code constexpr application  = 11;
+    code constexpr end_of_file  = 12;
      //...
-    code constexpr diagnostic12_ = 12;
+    code constexpr diagnostic12_ = 13;
     
     /*!
     *   @brief Diagnostic Object. 
