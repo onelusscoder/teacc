@@ -10,13 +10,17 @@
 #pragma once
 #include <tea++/teascript/lexer/token_t.h>
 #include <tea++/diagnostics/diagnostic.h>
+#include <tea++/utils/expect.h>
+
 
 namespace teacc::diagnostic
 {
     code constexpr unexpected_token = 14;
     code constexpr expected_token   = 15;
     code constexpr unterminated_litteral = 16;
-    code constexpr unexpected_oef   = 17;
+    code constexpr unexpected_eof   = 17;
+
+
 }
 
 namespace teacc::teascript
@@ -43,12 +47,13 @@ namespace teacc::teascript
             [[nodiscard]] std::string mark() const;
             [[nodiscard]] std::string location() const;
             bool       _f = false; ///< used as "state machine" for math factor notation syntax style
-            rem::int scanto(const char* substr_);
-            expect<std::string> scanstring();
+            diagnostic::code scanto(const char* substr_);
+            expect<diagnostic::code> scanstring();
 
-            internalcursor() = default;
-            explicit internalcursor(const char* source_);
+            cursor_t() = default;
+            explicit cursor_t(const char* source_);
         }_cursor;
     };
+
 
 }
