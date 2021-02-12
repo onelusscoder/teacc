@@ -86,6 +86,8 @@ namespace teacc::teascript
         static constexpr type octal_t        = 0x80000000000;
         static constexpr type bin            = 0x100000000000;
 
+        static std::string   name(type_t::type);
+        static type_t::type  encode(const std::string&);
     };
 
     class TEASCRIPT mnemonic

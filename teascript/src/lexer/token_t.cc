@@ -147,33 +147,58 @@ token_t token_t::operator[](mnemonic::type m_)
 
 std::string token_t::mark()
 {
-    return std::string();
+    string_t    str;
+    const char* b = _location.begin - _location.i;
+    int        l = 1;
+    const char* cc = _location.begin;
+    // localiser le debut de la ligne;
+    while (*cc && (cc > b) && (*cc != '\n') && (*cc != '\r'))
+        --cc;
+    // debut de la ligne ou de la source:
+    if (cc >= b)
+    {
+        if ((*cc == '\n') || (*cc == '\r'))
+            ++cc;
+        while (*cc && (*cc != '\n') && (*cc != '\r'))
+            str += *cc++;
+    }
+
+    string_t tstr = str;
+    tstr += '\n';
+    for (int x = 1; x < _location.c; x++)
+        tstr += ' ';
+    tstr += '^';
+    return tstr();
 }
 
 std::string token_t::sem_types()
 {
-    return std::string();
+    return type_t::name(s);
 }
 
 std::string token_t::type_name()
 {
-    return std::string();
+    return type_t::name(t);
 }
 
 std::string token_t::details(bool mark_)
 {
-    return std::string();
+    string_t str = "(%d,%d) %s[%s]'%s'";
+    str << _location() << type_t::type_t::name(t) << type_t::name(s) << text();
+    return str();
 }
-
-
 
 
 std::string token_t::location_t::operator()()
 {
     string_t str;
+    str += '(';
     str += l;
     str += ',';
     str += c;
+    str += ")'";
+    str += text();
+    str += '\'';
     return str();
 }
 
@@ -188,5 +213,56 @@ std::string token_t::location_t::text()
 
     return str;
 }
+
+
+
+token_t token_t::scan(const char* c_)
+{
+    int unicode = 0;
+    int index = 0;
+    //Rem::Debug() << __PRETTY_FUNCTION__ << ":\n";
+    for (auto token : _teascript_tokens_ref)
+    {
+        const char* crs = c_;
+        const char* rtxt = token._location.begin;
+        std::size_t sz = std::strlen(rtxt);
+
+        if (*crs != *token._location.begin)
+        {
+            ++index;
+            continue;
+        }
+        ++index;
+        /*
+        * I arbitrary assume that the UNICODE UNIT is a signed 16 bits AND THAT THE VALUE OF FIRST BYTE IS NEGATIVE.
+        * Then I take the next byte to determine the unicode ...code...
+        */
+        while ((*crs && *rtxt) && (*crs == *rtxt))
+        {
+            ////std::cout << *crs <<  *rtxt << ">>>";
+            if (*crs < 0)
+                ++unicode;
+            ++crs;
+            ++rtxt;
+        }
+
+        if (*rtxt == 0)
+        {
+            //            Rem::Debug() << "Check Token Mnemonic :[" << MnemonicName(Tok.M) << ']';
+            if (*crs && !isspace(*crs))
+            {
+                ///@todo DEBUG! Temporary boolean validation solution... Must be beaten very hard here.
+                if ((isalnum(*crs) || (*crs == '_')) && !token.is_operator())
+                    continue;
+            }
+
+            token._location.begin = c_;
+            token._location.end = crs - 1;
+            return token;
+        }
+    }
+    return token_t::_token_null;
+}
+
 
 }

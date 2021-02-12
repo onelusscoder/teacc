@@ -33,7 +33,7 @@ namespace teacc::teascript
             int        l      = -1; ///< line number
             int        c      = -1; ///< Column number
             int64_t    i      = -1; ///< Absolute offset from the beginning of the Source Text.
-            uint8_t    ln     = -1; ///< Absolute offset index of the end of token.
+            uint8_t    ln     = -1; ///< Length og the text.
             std::string operator()();
             std::string text();
             //std::string position();
