@@ -27,6 +27,9 @@
     <ClInclude Include="include\tea++\teascript\lexer\lexer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="include\tea++\teascript\compiler\tr_unit.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\type_t.cc">
@@ -36,6 +39,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\lexer\lexer.cc">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\compiler\tr_unit.cc">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -81,7 +81,7 @@ class TEASCRIPT lexer
             bin,
             oct,
             dec,
-            hex,/* ..., */ //  fuck!!!
+            hex/* ..., */ //  fuck!!!
         }num = none;
 
         num_scanner_t() = default;
@@ -131,12 +131,12 @@ private:
     scanner get_scanner(token_t& t_);
 
     lexer::result input_binary_operator(token_t&);
-    lexer::result input_default(token_t&);
+    lexer::result scan_default(token_t&);
     lexer::result input_unary_operator(token_t&);
     lexer::result input_punctuation(token_t&);
     lexer::result input_keyword(token_t&);
-    lexer::result input_hex(token_t&);
-    lexer::result input_text(token_t&);
+    lexer::result scan_hex(token_t&);
+    lexer::result scan_text(token_t&);
     lexer::result scan_number(token_t&);
     lexer::result scan_identifier(token_t&);
     lexer::result scan_factor_notation(token_t&);
