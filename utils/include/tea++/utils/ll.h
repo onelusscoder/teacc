@@ -36,7 +36,7 @@
 #       define UTILS __declspec(dllimport)
 #   endif
 #   else
-#       define REM_LIB    // Not ms-Windows/MSVC
+#       define UTILS    // Not ms-Windows/MSVC
 #endif
 
 // Mandatory. Globally used where it needs to.

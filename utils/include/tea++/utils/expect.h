@@ -38,7 +38,7 @@ public:
     expect& operator=(bool good_) { good = good_; return *this; }
     
     
-    // ---- T must be constructible:
+    // ---- T must be default constructible:
     T operator()(){ if(!good) return T(); else  return _d; }
     T operator*(){  if(!good) return T(); else  return _d; }
     // -------------------------------

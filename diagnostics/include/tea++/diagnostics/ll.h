@@ -36,7 +36,7 @@
 #       define DIAGNOSTICS __declspec(dllimport)
 #   endif
 #   else
-#       define REM_LIB    // Not ms-Windows/MSVC
+#       define DIAGNOSTICS    // Not ms-Windows/MSVC
 #endif
 
 // Mandatory. Globally used where it needs to.
