@@ -6,8 +6,6 @@
 */
 #pragma once
 
-#include <tea++/diagnostics/dll.h>
-
 
 #include <iostream>
 #include <cstring>
@@ -18,7 +16,7 @@
 #include <cctype>
 #include <cstdlib>
 #include <ctime>
-#include <cstdint>
+#include <tea++/diagnostics/rem.h>
 #include <cmath>
 #include <functional>
 #include <memory>
@@ -29,17 +27,29 @@ namespace tea::diagnostics{
     {
         std::string _name;
 
+    public:
+        diagnostic() = default;
+        diagnostic(const std::string& n_) : _name(n_) {}
+
+        virtual ~diagnostic() = default;
+
+
     };
 
 
-    template<typename T> class test  : public  diagnostic
+    class DIAGNOSTICS test  : public  diagnostic
     {
-        std::shared_ptr<T> _obj = nullptr;
 
     public:
         test() = default;
         test(const std::string& name_) : diagnostic(name_) {}
 
+        template<typename T> rem::code_t eq(const T& lhs, const T& rhs)
+        {
+            if (lhs == rhs) return rem::pass;
+            //...
+            return rem::fail;
+        }
     };
 
 

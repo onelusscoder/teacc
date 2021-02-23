@@ -5,7 +5,9 @@
 */
 #pragma once
 
-#include <tea++/diagnostics/diagnostic.h>
+//#include <tea++/diagnostics/diagnostic.h>
+#include <tea++/diagnostics/dll.h>
+
 #include <cstdint>
 #include <stack>
 #include <map>
