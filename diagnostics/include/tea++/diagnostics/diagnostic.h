@@ -20,37 +20,62 @@
 #include <cmath>
 #include <functional>
 #include <memory>
+#include <string_view>
 
 namespace tea::diagnostics{
+
+    struct DIAGNOSTICS test
+    {
+
+        std::string _name;
+        bool _selected = false;
+        
+   
+        test() = default;
+        test(const std::string& name_) : _name(name_) {}
+        using collection = std::map<std::string_view, test*>;
+
+        template<typename T> static rem::code_t eq(const T& lhs, const T& rhs)
+        {
+            if (lhs == rhs) return rem::pass;
+            //...
+            return rem::fail;
+        }
+
+        template<typename T> static rem::code_t neq(const T& lhs, const T& rhs)
+        {
+            if (lhs != rhs) return rem::pass;
+            //...
+            return rem::fail;
+        }
+
+        static rem::code_t not_null(void* v)
+        {
+            if (v != nullptr) return rem::pass;
+            //...
+            return rem::fail;
+        }
+
+        virtual rem::code_t run() = 0;
+    };
+
+
+
+    class diagnostic;
 
     class DIAGNOSTICS diagnostic
     {
         std::string _name;
+        test::collection _tests;
 
     public:
         diagnostic() = default;
         diagnostic(const std::string& n_) : _name(n_) {}
 
         virtual ~diagnostic() = default;
-
-
+        virtual rem::code_t run();
     };
 
-
-    class DIAGNOSTICS test  : public  diagnostic
-    {
-
-    public:
-        test() = default;
-        test(const std::string& name_) : diagnostic(name_) {}
-
-        template<typename T> rem::code_t eq(const T& lhs, const T& rhs)
-        {
-            if (lhs == rhs) return rem::pass;
-            //...
-            return rem::fail;
-        }
-    };
 
 
 }
