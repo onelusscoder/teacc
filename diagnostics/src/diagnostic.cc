@@ -14,4 +14,8 @@ namespace tea::diagnostics
         }
         return rem::fail;
     }
+    test::~test()
+    {
+        _name.clear();
+    }
 }

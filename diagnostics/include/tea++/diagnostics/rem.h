@@ -12,6 +12,7 @@
 #include <stack>
 #include <map>
 #include <string_view>
+#include <functional>
 
 namespace tea::diagnostics
 {

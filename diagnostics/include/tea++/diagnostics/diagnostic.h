@@ -33,6 +33,8 @@ namespace tea::diagnostics{
    
         test() = default;
         test(const std::string& name_) : _name(name_) {}
+        virtual ~test();
+
         using collection = std::map<std::string_view, test*>;
 
         template<typename T> static rem::code_t eq(const T& lhs, const T& rhs)
@@ -56,6 +58,8 @@ namespace tea::diagnostics{
             return rem::fail;
         }
 
+
+        std::string_view name() { return _name.c_str(); }
         virtual rem::code_t run() = 0;
     };
 
