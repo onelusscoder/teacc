@@ -36,11 +36,16 @@ namespace tea::diagnostics{
         lambda_fn_t fn = nullptr;
 
         test() = default;
-        test(const std::string& name_) : name(name_) {}
+        test(test&&) noexcept = default;
+        test(const test&) = default;
+        test(const std::string& name_, bool selected_, test::lambda_fn_t fn_) : name(name_), selected(selected_), fn(fn_) {}
         virtual ~test();
 
         using collection = std::map<std::string_view, test>;
 
+
+        test& operator = (test&&) noexcept = default;
+        test& operator = (const test&) noexcept = default;
         template<typename T> static rem::code_t eq(const T& lhs, const T& rhs)
         {
             if (lhs == rhs) return rem::pass;
@@ -75,6 +80,12 @@ namespace tea::diagnostics{
         diagnostic(const std::string& n_) : _name(n_) {}
 
         diagnostic& operator << (test&& test_)
+        {
+            _tests[test_.name] = std::move(test_);
+            return *this;
+        }
+
+        diagnostic& operator += (test&& test_)
         {
             _tests[test_.name] = std::move(test_);
             return *this;

@@ -45,6 +45,7 @@ namespace tea::diagnostics
         static constexpr rem::code_t accepted     = 3;
         static constexpr rem::code_t rejected     = 4;
         static constexpr rem::code_t pass         = 5;
+        static constexpr rem::code_t done         = 6;
     #pragma endregion
 
         rem() = default;

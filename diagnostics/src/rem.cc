@@ -59,14 +59,15 @@ namespace tea::diagnostics
 
     std::string rem::code(int c_)
     {
-        std::array<std::string_view, 6> _ =
+        std::array<std::string_view, 7> _ =
         {
             "ok",
             "success",
             "fail",
             "accepted",
             "rejected",
-            "pass"
+            "pass",
+            "done"
         };
         return _[c_].data();
     }
