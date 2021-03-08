@@ -8,14 +8,20 @@ namespace tea::diagnostics
     {
         for (auto tst : _tests)
         {
-            if (tst.second->_selected)
-                tst.second->run();
+            if (tst.second.selected)
+                tst.second.run();
 
         }
         return rem::fail;
     }
     test::~test()
     {
-        _name.clear();
+        name.clear();
+    }
+    rem::code_t test::run()
+    {
+        if (fn)
+            return fn();
+        return rem::rejected;
     }
 }

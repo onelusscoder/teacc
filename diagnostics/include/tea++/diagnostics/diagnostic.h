@@ -61,7 +61,7 @@ namespace tea::diagnostics{
             //...
             return rem::fail;
         }
-        virtual rem::code_t run() = 0;
+        rem::code_t run();
     };
 
 
