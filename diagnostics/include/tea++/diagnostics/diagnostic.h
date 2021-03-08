@@ -24,18 +24,22 @@
 
 namespace tea::diagnostics{
 
+
+    class diagnostic;
+
     struct DIAGNOSTICS test
     {
+        using lambda_fn_t = std::function <rem::code_t()>;
 
-        std::string _name;
-        bool _selected = false;
-        
-   
+        std::string name;
+        bool        selected = false;
+        lambda_fn_t fn = nullptr;
+
         test() = default;
-        test(const std::string& name_) : _name(name_) {}
+        test(const std::string& name_) : name(name_) {}
         virtual ~test();
 
-        using collection = std::map<std::string_view, test*>;
+        using collection = std::map<std::string_view, test>;
 
         template<typename T> static rem::code_t eq(const T& lhs, const T& rhs)
         {
@@ -57,15 +61,9 @@ namespace tea::diagnostics{
             //...
             return rem::fail;
         }
-
-
-        std::string_view name() { return _name.c_str(); }
         virtual rem::code_t run() = 0;
     };
 
-
-
-    class diagnostic;
 
     class DIAGNOSTICS diagnostic
     {
@@ -75,6 +73,12 @@ namespace tea::diagnostics{
     public:
         diagnostic() = default;
         diagnostic(const std::string& n_) : _name(n_) {}
+
+        diagnostic& operator << (test&& test_)
+        {
+            _tests[test_.name] = std::move(test_);
+            return *this;
+        }
 
         virtual ~diagnostic() = default;
         virtual rem::code_t run();

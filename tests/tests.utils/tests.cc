@@ -30,5 +30,17 @@ namespace tea
 auto main() -> int {
     
     tea::test test("tea++.utils.string_t:");
+
+/*!
+*   diagnostic dgn("string_t");
+*   dgn << {
+*       .name       = "string_t::words",
+*       .test_name  = " with default delimiters",
+*       .fn = []() -> rem::code_t {
+*           // ...
+*           return rem::done;
+*       }
+*   };
+*/
     return static_cast<int>(test.run());
 }
