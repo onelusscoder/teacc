@@ -5,14 +5,14 @@ project(teacc VERSION 0.1.0 LANGUAGES CXX)
 set(FrameWorkName "tea++")
 message ("**************** " ${FrameWorkName} " Master Project ********************")
 #
-option(BUILD_UTILS "Enable building the Utilities (utils) library" ON)
-option(BUILD_TEALOG "Enable building the TEALOG ( tea_log ) utility library" ON)
-#option(BUILD_VAULT "Enable building the Vault/[SQLite,...] Database support  Library" ON)
-#option(BUILD_TEASCRIPT "Enable building the tea++ [teascript])  interpreter Library" ON)
-#option(BUILD_APPBOOK "Enable building the AppBook Library" ON)
-option(BUILD_DIAGNOSTICS "Enable building the Diagnostics Library" ON)
+option(BUILD_UTILS "Enable building the tea++ common utilities (utils) library" ON)
+option(BUILD_TEALOG "Enable building the TEALOG ( tea_log ) utility library" OFF)
+option(BUILD_VAULT "Enable building the vault/[SQLite,...] Database support  library" OFF)
+option(BUILD_TEASCRIPT "Enable building the tea++ [teascript])  interpreter library" OFF)
+option(BUILD_APPBOOK "Enable building the application book library" OFF)
+option(BUILD_DIAGNOSTICS "Enable building the diagnostics Library which provides a growing general purpose messaging [return]codes repository" ON)
 #option(BUILD_TAA "Enable building the Terminal Application Api" OFF)
-option(BUILD_TESTS "Build the tests application based on the Diagnostics framework" ON)
+option(BUILD_TESTS "Build the tests application based on the Diagnostics framework" OFF)
 
 #
 
@@ -25,20 +25,20 @@ if(BUILD_UTILS)
 endif()
 
 if(BUILD_TEALOG)
-    SET(TEALOG_INCLUDE_DIR ${FRAMEWORK_ROOT}/logger/include)
-    add_subdirectory(logger)
+    SET(TEALOG_INCLUDE_DIR ${FRAMEWORK_ROOT}/tealog/include)
+    add_subdirectory(tealog)
 endif()
 
 
-#if(BUILD_VAULT)
-#    SET(VAULT_INCLUDE_DIR ${LSC_ROOT}/Vault/include)
-#    add_subdirectory(Vault)
-#endif()
+if(BUILD_VAULT)
+    SET(VAULT_INCLUDE_DIR ${FRAMEWORK_ROOT}/vault/include)
+    add_subdirectory(vault)
+endif()
 #
-#if(BUILD_TEASCRIPT)
-#    SET(TEASCRIPT_INCLUDE_DIR ${LSC_ROOT}/teascript/include)
-#    add_subdirectory(teascript)
-#endif()
+if(BUILD_TEASCRIPT)
+    SET(TEASCRIPT_INCLUDE_DIR ${FRAMEWORK_ROOT}/teascript/include)
+    add_subdirectory(teascript)
+endif()
 #
 
 if(BUILD_DIAGNOSTICS)
@@ -56,10 +56,10 @@ if(BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 #
-#if(BUILD_APPBOOK)
-#    SET(APPBOOK_INCLUDE_DIR ${LSC_ROOT}/AppBook/include)
-#    add_subdirectory(AppBook)
-#endif()
+if(BUILD_APPBOOK)
+   SET(APPBOOK_INCLUDE_DIR ${FRAMEWORK_ROOT}/application_book/include)
+   add_subdirectory(application_book)
+endif()
 #
 #
 #message ("Project SourceDir:" ${PROJECT_SOURCE_DIR})
