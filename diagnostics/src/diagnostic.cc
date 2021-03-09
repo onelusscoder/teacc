@@ -4,20 +4,34 @@
 
 namespace tea::diagnostics
 {
+    diagnostic& diagnostic::declare_tests(test::collection&& col_)
+    {
+        _tests = std::move(col_);
+        return *this;
+    }
+
     rem::code_t diagnostic::run()
     {
+        std::string_view str = "diagnostic";
+        rem::new_section("diagnostic");
+
+        MDebugPF(str), "begin\n-----------------------------------------------------\n";
+
         std::cout << "diagnostic '" << _name << "'\nbegin\n-----------------------------------------------------\n";
         for (auto tst : _tests)
         {
-            if (tst.second.selected)
+            if (tst.selected)
             {
-                std::cout << "    test '" << tst.second.name << "':\n";
-                std::cout << "........" << rem::code(tst.second.run()) << "\n";
+                std::cout << "    test '" << tst.name << "':\n";
+                std::cout << "........" << rem::code(tst.run()) << "\n";
             }
         }
         std::cout << "diagnostic '" << _name << "'";
         std::cout << "\n-----------------------------------------------------\ndone\n";
 
+        rem::clear(str, [](std::string_view v, rem& r) {
+            std::cout << r();
+        });
         return rem::done;
     }
 

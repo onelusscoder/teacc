@@ -7,16 +7,26 @@ auto main() -> int {
     using tea::diagnostics::rem;
     tea::diagnostics::diagnostic dng{ "utils::string_t" };
 
-    dng << tea::diagnostics::test{
-        "string_t::words",
-        true,
-        []() -> rem::code_t {
-            // ...
-            return rem::rejected;
-        }
-    };
-    
-    dng.run();
 
+    dng.declare_tests( 
+    {
+        {
+            "string_t::words",
+            true,
+            []() -> rem::code_t {
+                std::cout << "in " << "string_t::words ...\n";
+                return rem::rejected;
+            }
+        },
+        {
+            "string_t::binary",
+            true,
+            []() -> rem::code_t {
+                std::cout << "in " << "string_t::binary ...\n";
+                return rem::rejected;
+            }
+        }
+    }).run();
+    
     return 0;
 }

@@ -41,8 +41,7 @@ namespace tea::diagnostics{
         test(const std::string& name_, bool selected_, test::lambda_fn_t fn_) : name(name_), selected(selected_), fn(fn_) {}
         virtual ~test();
 
-        using collection = std::map<std::string_view, test>;
-
+        using collection = std::vector<test>;
 
         test& operator = (test&&) noexcept = default;
         test& operator = (const test&) noexcept = default;
@@ -81,13 +80,14 @@ namespace tea::diagnostics{
 
         diagnostic& operator << (test&& test_)
         {
-            _tests[test_.name] = std::move(test_);
+            _tests.emplace_back(std::move(test_));
             return *this;
         }
 
+        diagnostic& declare_tests (test::collection&& col_);
         diagnostic& operator += (test&& test_)
         {
-            _tests[test_.name] = std::move(test_);
+            _tests.emplace_back(std::move(test_));
             return *this;
         }
 

@@ -74,6 +74,7 @@ namespace tea::diagnostics
             return *this;
         }
 
+        std::string operator()();
 
         static rem::code_t new_section(const std::string& name);
         static rem& push(std::string_view key, rem::type_t t_, rem::code_t c_, std::string_view prefix="");
@@ -93,5 +94,10 @@ namespace tea::diagnostics
 
 #define DebugF          tea::diagnostics::rem::push("main",rem::debug, 0,  __FUNCTION__)
 #define MDebugF(m)      tea::diagnostics::rem::push((m),   rem::debug, 0,  __FUNCTION__)
-#define MessageF        tea::diagnostics::rem::push("main",rem::debug, 0,  __FUNCTION__)
-#define MMessageF(m)    tea::diagnostics::rem::push((m),   rem::debug, 0,  __FUNCTION__)
+#define MessageF        tea::diagnostics::rem::push("main",rem::message, 0,  __FUNCTION__)
+#define MMessageF(m)    tea::diagnostics::rem::push((m),   rem::message, 0,  __FUNCTION__)
+
+#define DebugPF          tea::diagnostics::rem::push("main",rem::debug, 0,  __PRETTY_FUNCTION__)
+#define MDebugPF(m)      tea::diagnostics::rem::push((m),   rem::debug, 0,  __PRETTY_FUNCTION__)
+#define MessagePF        tea::diagnostics::rem::push("main",rem::message, 0,  __PRETTY_FUNCTION__)
+#define MMessagePF(m)    tea::diagnostics::rem::push((m),   rem::message, 0,  __PRETTY_FUNCTION__)
