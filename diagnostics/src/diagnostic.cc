@@ -17,17 +17,17 @@ namespace tea::diagnostics
 
         MDebugPF(str), "begin\n-----------------------------------------------------\n";
 
-        std::cout << "diagnostic '" << _name << "'\nbegin\n-----------------------------------------------------\n";
+        MDebugF(str), "diagnostic '",  _name,  "'\nbegin\n-----------------------------------------------------\n";
         for (auto tst : _tests)
         {
             if (tst.selected)
             {
-                std::cout << "    test '" << tst.name << "':\n";
-                std::cout << "........" << rem::code(tst.run()) << "\n";
+                MDebugF(str), "    test '",  tst.name,  "':\n";
+                MDebugF(str), "........" , rem::code(tst.run()) , "\n";
             }
         }
-        std::cout << "diagnostic '" << _name << "'";
-        std::cout << "\n-----------------------------------------------------\ndone\n";
+        MDebugF(str), "diagnostic '", _name , "'";
+        MDebugF(str), "\n-----------------------------------------------------\ndone\n";
 
         rem::clear(str, [](std::string_view v, rem& r) {
             std::cout << r();
