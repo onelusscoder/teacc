@@ -14,7 +14,7 @@ auto main() -> int {
             "string_t::words",
             true,
             []() -> rem::code_t {
-                std::cout << "in " << "string_t::words ...\n";
+                MDebugF("diagnostic"), "in " , "string_t::words ...\n";
                 return rem::rejected;
             }
         },
@@ -22,7 +22,7 @@ auto main() -> int {
             "string_t::binary",
             true,
             []() -> rem::code_t {
-                std::cout << "in " << "string_t::binary ...\n";
+                MDebugF("diagnostic"), "in " , "string_t::binary ...\n";
                 return rem::rejected;
             }
         }

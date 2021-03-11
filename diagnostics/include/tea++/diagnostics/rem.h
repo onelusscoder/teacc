@@ -23,8 +23,8 @@ namespace tea::diagnostics
         std::string                 _text;
         std::stack<std::string>     _vdata;
 
-        using stack                 = std::stack<rem>;
-        using section_t             = std::map<std::string_view, rem::stack>;
+        using list_t                = std::vector<rem>;
+        using section_t             = std::map<std::string_view, rem::list_t>;
 
     public:
         using type_t                = uint8_t;

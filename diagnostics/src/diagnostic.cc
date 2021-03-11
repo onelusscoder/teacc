@@ -13,7 +13,7 @@ namespace tea::diagnostics
     rem::code_t diagnostic::run()
     {
         std::string_view str = "diagnostic";
-        rem::new_section("diagnostic");
+        rem::new_section(str.data());
 
         MDebugPF(str), "begin\n-----------------------------------------------------\n";
 

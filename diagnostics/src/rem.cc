@@ -5,9 +5,8 @@ namespace tea::diagnostics{
 
 CLASSNAME_IMPL(rem)
 rem::section_t rem::s_sections = {
-    {"main", std::stack<rem>()}
+    {"main", rem::list_t()}
 };
-
 
 }
 
@@ -65,8 +64,8 @@ namespace tea::diagnostics
     */
     rem& rem::push(std::string_view key, rem::type_t t_, rem::code_t c_, std::string_view prefix)
     {
-        rem::s_sections[key].push({t_, c_,prefix});
-        return rem::s_sections[key].top();
+        rem::s_sections[key].push_back({t_, c_,prefix});
+        return rem::s_sections[key].back();
     }
 
     std::string rem::code(int c_)
@@ -111,13 +110,12 @@ namespace tea::diagnostics
         std::size_t sz = 0;
         for (auto k : rem::s_sections)
         {
-            while(!k.second.empty())
+            for(auto item: k.second)
             {
                 if (f)
-                    f(k.first, k.second.top());
-                
-                k.second.pop();
+                    f(k.first, item);
             }
+            k.second.clear();
         }
         rem::s_sections.clear();
         return std::size_t();
