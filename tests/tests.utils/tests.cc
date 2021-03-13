@@ -26,7 +26,8 @@ auto main() -> int {
                 return rem::rejected;
             }
         }
-    }).run();
+        });
+    dng.run();
     
     return 0;
 }
