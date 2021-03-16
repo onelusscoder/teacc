@@ -7,7 +7,7 @@ auto main() -> int {
     using tea::diagnostics::rem;
     tea::diagnostics::diagnostic dng{ "utils::string_t" };
 
-
+//! @todo ---------- Remove rem::push usage into the test execution for messaging. must implement independant diagnostic messaging.
     dng.declare_tests( 
     {
         {

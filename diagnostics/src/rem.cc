@@ -52,7 +52,7 @@ namespace tea::diagnostics
  */
     rem::code_t rem::new_section(const std::string& name)
     {
-        (void)rem::s_sections[name]; // Créer une instance std::stack par défaut...
+        (void)rem::s_sections[name].push_back({ rem::section, rem::debug, name }); // Créer une instance std::stack par défaut...
         return rem::accepted;
     }
 
@@ -85,7 +85,7 @@ namespace tea::diagnostics
 
     std::string rem::type(int t_)
     {
-        std::array<std::string_view, 7> _ =
+        std::array<std::string_view, 8> _ =
         {
             "error",
             "fatal",

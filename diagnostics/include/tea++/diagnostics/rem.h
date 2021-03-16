@@ -37,6 +37,7 @@ namespace tea::diagnostics
         static constexpr rem::type_t information  = 5;
         static constexpr rem::type_t comm         = 6;
         static constexpr rem::type_t debug        = 7;
+        static constexpr rem::type_t section      = 8;
         // ...
 
         static constexpr rem::code_t ok           = 0;

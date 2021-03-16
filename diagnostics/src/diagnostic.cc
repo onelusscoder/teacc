@@ -23,7 +23,11 @@ namespace tea::diagnostics
             if (tst.selected)
             {
                 MDebugF(str), "    test '",  tst.name,  "':\n";
-                MDebugF(str), "........" , rem::code(tst.run()) , "\n";
+                MDebugF(str), "........" , 
+                    rem::code(
+                        tst.run()
+                    ) , 
+                    "\n";
             }
         }
         MDebugF(str), "diagnostic '", _name , "'";
