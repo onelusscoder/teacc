@@ -84,7 +84,7 @@ namespace tea::diagnostics{
             return *this;
         }
 
-        diagnostic& declare_tests (test::collection&& col_);
+        diagnostic& declare_tests (test::collection col_);
         diagnostic& operator += (test&& test_)
         {
             _tests.emplace_back(std::move(test_));

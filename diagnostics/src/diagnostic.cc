@@ -4,7 +4,7 @@
 
 namespace tea::diagnostics
 {
-    diagnostic& diagnostic::declare_tests(test::collection&& col_)
+    diagnostic& diagnostic::declare_tests(test::collection col_)
     {
         _tests = std::move(col_);
         return *this;
