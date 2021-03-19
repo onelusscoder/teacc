@@ -152,9 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\tea++\utils\dll.h" />
+    <ClInclude Include="include\tea++\utils\rep.h" />
     <ClInclude Include="include\tea++\utils\string_t.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\rep.cc" />
     <ClCompile Include="src\string_t.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
