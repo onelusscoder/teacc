@@ -41,6 +41,7 @@ namespace tea
         rep& operator = (const rep&) = default;
 
         static rep& debug(std::string_view section_name_);
+        static rep& debug();
 
     };
 
