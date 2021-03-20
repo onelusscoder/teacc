@@ -24,12 +24,24 @@ namespace tea
         using    code_t = uint32_t;
 
         // -----------------------------------------------------------
-        static constexpr type_t error_type   = 1;
-        static constexpr type_t warning_type = 2;
-        static constexpr type_t fatal_type   = 3;
-        static constexpr type_t info_type    = 4;
-        static constexpr type_t message_type = 5;
-        static constexpr type_t debug_type   = 6;
+        static constexpr type_t error_type      = 1;
+        static constexpr type_t warning_type    = 2;
+        static constexpr type_t fatal_type      = 3;
+        static constexpr type_t info_type       = 4;
+        static constexpr type_t message_type    = 5;
+        static constexpr type_t debug_type      = 6;
+        static constexpr type_t syntax_type     = 7;
+        static constexpr type_t diagnostic_type = 8;
+        static constexpr type_t expected_type   = 9;
+        static constexpr type_t unexpected_type = 10;
+        static constexpr type_t exception_type  = 8;
+        //...
+        // -----------------------------------------------------------
+        static constexpr code_t passed = 1;
+        static constexpr code_t failed = 2;
+        static constexpr code_t success= 3;
+        static constexpr code_t e_o_f  = 4;  ///< (un|expected) end of file
+        static constexpr code_t e_o_s  = 5;  ///< (un|expected) end of {string|stream|statement|sentence}
         //...
         // -----------------------------------------------------------
 
@@ -52,6 +64,9 @@ namespace tea
 
         static rep& debug(std::string_view section_name_);
         static rep& debug();
+
+        static rep& error(std::string_view section_name_);
+        static rep& error();
 
     };
 
