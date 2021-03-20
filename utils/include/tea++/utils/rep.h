@@ -23,6 +23,16 @@ namespace tea
         using    type_t = uint8_t;
         using    code_t = uint32_t;
 
+        // -----------------------------------------------------------
+        static constexpr type_t error_type   = 1;
+        static constexpr type_t warning_type = 2;
+        static constexpr type_t fatal_type   = 3;
+        static constexpr type_t info_type    = 4;
+        static constexpr type_t message_type = 5;
+        static constexpr type_t debug_type   = 6;
+        //...
+        // -----------------------------------------------------------
+
     private:
         std::stack<std::string> _d;
         rep::code_t     _code = 0;
