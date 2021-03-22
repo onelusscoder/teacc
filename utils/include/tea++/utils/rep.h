@@ -42,6 +42,8 @@ namespace tea
         static constexpr code_t success= 3;
         static constexpr code_t e_o_f  = 4;  ///< (un|expected) end of file
         static constexpr code_t e_o_s  = 5;  ///< (un|expected) end of {string|stream|statement|sentence}
+        static constexpr code_t ok     = 6;
+
         //...
         // -----------------------------------------------------------
 
