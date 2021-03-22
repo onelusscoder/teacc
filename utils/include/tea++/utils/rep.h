@@ -47,9 +47,9 @@ namespace tea
 
     private:
         std::stack<std::string> _d;
-        rep::code_t     _code = 0;
-        rep::type_t     _type = 0;
-        static rep::section_t  _sections;
+        rep::code_t             _code = 0;
+        rep::type_t             _type = 0;
+        static rep::section_t   _sections;
     public:
 
         rep() = default;
