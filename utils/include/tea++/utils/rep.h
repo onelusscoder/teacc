@@ -34,7 +34,7 @@ namespace tea
         static constexpr type_t diagnostic_type = 8;
         static constexpr type_t expected_type   = 9;
         static constexpr type_t unexpected_type = 10;
-        static constexpr type_t exception_type  = 8;
+        static constexpr type_t exception_type  = 11;
         //...
         // -----------------------------------------------------------
         static constexpr code_t passed = 1;
@@ -69,6 +69,10 @@ namespace tea
 
         static rep& error(std::string_view section_name_);
         static rep& error();
+
+        static std::string str(rep::type_t);
+        static std::string str(rep::code_t);
+
 
     };
 

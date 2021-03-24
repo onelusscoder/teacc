@@ -9,7 +9,7 @@ namespace tea
 
 
     rep::rep(rep::type_t type_, rep::code_t code_):
-        _code(code_), _type(type_)
+        _code(code_), },(type_)
     {
     }
 
@@ -48,5 +48,30 @@ namespace tea
         rep::list_t& list = rep::_sections["main"];
         list.push_back({});
         return list.back();
+    }
+
+
+    std::string rep::str(rep::type_t t_)
+    {
+        std::vector<std::string> _ = {
+            {"error"},
+            {"warning"},
+            {"fatal"},
+            {"info"},
+            {"message"},
+            {"debug"},
+            {"syntax"},
+            {"diagnostic"},
+            {"expected"},
+            {"unexpected"},
+            {"exception"}
+        };
+        return _[t_-1];
+    }
+
+
+    std::string rep::str(rep::code_t c_)
+    {
+        return "";
     }
 }
