@@ -9,7 +9,7 @@ namespace tea
 
 
     rep::rep(rep::type_t type_, rep::code_t code_):
-        _code(code_), },(type_)
+        _code(code_), _type(type_)
     {
     }
 
