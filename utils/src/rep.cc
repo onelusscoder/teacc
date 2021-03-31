@@ -40,6 +40,8 @@ namespace tea
     {
         rep::list_t& list = rep::_sections[section_name_];
         list.push_back(rep{});
+        rep& r = list.back();
+        r._type = rep::::
         return list.back();
     }
 
@@ -72,6 +74,17 @@ namespace tea
 
     std::string rep::str(rep::code_t c_)
     {
-        return "";
+        std::vector<std::string> _ = {
+            {"passed"   },
+            {"failed"   },
+            {"success"  },
+            {"end of file"},
+            {"end of stream"},
+            {"ok"}
+        };
+        return _[c_];
     }
+
+
+
 }
