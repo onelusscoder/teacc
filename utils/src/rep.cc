@@ -26,6 +26,8 @@ namespace tea
     {
         rep::list_t& list = rep::_sections[section_name_];
         list.push_back(rep{});
+        rep& r = list.back();
+        r._type = rep::debug_type;
         return list.back();
     }
 
@@ -33,6 +35,8 @@ namespace tea
     {
         rep::list_t& list = rep::_sections["main"];
         list.push_back({});
+        rep& r = list.back();
+        r._type = rep::debug_type;
         return list.back();
     }
 
@@ -41,8 +45,8 @@ namespace tea
         rep::list_t& list = rep::_sections[section_name_];
         list.push_back(rep{});
         rep& r = list.back();
-        r._type = rep::::
-        return list.back();
+        r._type = rep::error_type;
+        return r;
     }
 
     rep& rep::error()
