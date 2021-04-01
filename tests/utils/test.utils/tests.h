@@ -6,5 +6,15 @@
 
 class tests
 {
+public:
+    tests();
+    ~tests();
+
+    int run();
+
+
+    tea::rep::code_t rep();
+
+
 };
 

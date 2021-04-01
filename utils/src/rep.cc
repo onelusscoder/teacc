@@ -84,9 +84,40 @@ namespace tea
             {"success"  },
             {"end of file"},
             {"end of stream"},
-            {"ok"}
+            {"ok"},
+            {"noop"}
         };
         return _[c_];
+    }
+
+    rep& rep::operator,(rep::code_t c_)
+    {
+        _d.push(rep::str(c_));
+        return *this;
+    }
+
+    rep& rep::operator,(rep::type_t t_)
+    {
+        _d.push(rep::str(t_));
+        return *this;
+    }
+
+    void rep::clear(std::function<void(rep&)> f_)
+    {
+        for (auto m : rep::_sections)
+        {
+            if (!m.second.empty())
+            {
+                for (auto r : m.second)
+                {
+                    if (f_) 
+                        f_(r); 
+                }
+                m.second.clear();
+            }
+            
+        }
+        rep::_sections.clear();
     }
 
 

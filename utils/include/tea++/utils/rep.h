@@ -43,6 +43,7 @@ namespace tea
         static constexpr code_t e_o_f  = 4;  ///< (un|expected) end of file
         static constexpr code_t e_o_s  = 5;  ///< (un|expected) end of {string|stream|statement|sentence}
         static constexpr code_t ok     = 6;
+        static constexpr code_t noop   = 7;
 
         //...
         // -----------------------------------------------------------
@@ -74,6 +75,18 @@ namespace tea
         static std::string str(rep::code_t);
 
 
+        rep& operator,(rep::code_t);
+        rep& operator,(rep::type_t);
+
+        template<typename T> rep& operator,(const T& v)
+        {
+            std::ostringstream os;
+            os << v;
+            _d.push(os.str());
+            return *this;
+        }
+
+        static void clear(std::function<void(rep&)> f_ = nullptr);
     };
 
 }

@@ -3,6 +3,29 @@
 
 auto main(int arc, char** argv) -> int
 {
-    std::cout << "[tea++.utils.Debug.dll]:\n" << argv[1] << '\n';
+    tests test;
+    return test.run();
+}
+
+tests::tests()
+{
+}
+
+tests::~tests()
+{
+}
+
+int tests::run()
+{
+    
     return 0;
+}
+
+tea::rep::code_t tests::rep()
+{
+    using tea::rep;
+    rep::debug(), rep::noop;
+
+    rep::clear();
+    return rep::ok;
 }
