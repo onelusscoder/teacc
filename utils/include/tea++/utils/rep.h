@@ -6,6 +6,7 @@
 #include <vector>
 #include <unordered_map>
 #include <string_view>
+#include <array>
 
 
 namespace tea
@@ -35,6 +36,7 @@ namespace tea
         static constexpr type_t expected_type   = 9;
         static constexpr type_t unexpected_type = 10;
         static constexpr type_t exception_type  = 11;
+ 
         //...
         // -----------------------------------------------------------
         static constexpr code_t passed = 1;
@@ -68,13 +70,15 @@ namespace tea
         static rep& debug(std::string_view section_name_);
         static rep& debug();
 
+        static rep& diagnostic(std::string_view header_);
+
         static rep& error(std::string_view section_name_);
         static rep& error();
 
         static std::string str(rep::type_t);
         static std::string str(rep::code_t);
 
-
+        static std::string_view location_data(std::array<std::string_view,3> header_);
         rep& operator,(rep::code_t);
         rep& operator,(rep::type_t);
 
@@ -87,6 +91,14 @@ namespace tea
         }
 
         static void clear(std::function<void(rep&)> f_ = nullptr);
+
+        std::string operator()();
     };
 
 }
+
+
+
+#define SRC_LOCATION tea::rep::location_data({__FILE__, __FUNCTION__, (tea::utils::string_t() << __LINE__).c_str()})
+#define DIAGNOSTIC tea::rep::diagnostic(SRC_LOCATION)
+

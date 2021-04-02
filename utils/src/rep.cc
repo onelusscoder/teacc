@@ -40,6 +40,16 @@ namespace tea
         return list.back();
     }
 
+    rep& rep::diagnostic(std::string_view header_)
+    {
+        rep::list_t& list = rep::_sections["main"];
+        list.push_back(rep{});
+        rep& r = list.back();
+        r._type = rep::diagnostic_type;
+        r, header_;
+        return r;
+    }
+
     rep& rep::error(std::string_view section_name_)
     {
         rep::list_t& list = rep::_sections[section_name_];
@@ -70,7 +80,8 @@ namespace tea
             {"diagnostic"},
             {"expected"},
             {"unexpected"},
-            {"exception"}
+            {"exception"},
+            {"syntax error"}
         };
         return _[t_-1];
     }
@@ -88,6 +99,24 @@ namespace tea
             {"noop"}
         };
         return _[c_];
+    }
+
+    std::string_view rep::location_data(std::array<std::string_view,3> data_)
+    {
+        std::string buffer;
+        std::vector<std::string_view> table = {"file:","function:","line:"};
+        int i = 0;
+        for (auto s : data_)
+        {
+            if (!data_.empty())
+            {
+                buffer += table[i];
+                buffer += data_[i].data();
+                buffer += '\n'; //@ todo : insert format-agnostic end of line here.
+            }
+        }
+        std::string_view sv = buffer.c_str();
+        return sv;
     }
 
     rep& rep::operator,(rep::code_t c_)
@@ -118,6 +147,14 @@ namespace tea
             
         }
         rep::_sections.clear();
+    }
+
+    std::string rep::operator()()
+    {
+    
+        std::string str;
+
+        return std::string();
     }
 
 

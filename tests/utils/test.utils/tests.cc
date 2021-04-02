@@ -1,6 +1,6 @@
 #include "tests.h"
 
-
+#include <cstdlib>
 auto main(int arc, char** argv) -> int
 {
     tests test;
@@ -24,8 +24,9 @@ int tests::run()
 tea::rep::code_t tests::rep()
 {
     using tea::rep;
-    rep::debug(), rep::noop;
+    //rep::diagnostic(SRC_LOCATION), rep::noop;
+    DIAGNOSTIC, rep::noop;
 
-    rep::clear();
+    rep::clear([](tea::rep& r) {std::cout << r() << '\n'; });
     return rep::ok;
 }
