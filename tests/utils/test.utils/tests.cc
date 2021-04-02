@@ -17,7 +17,7 @@ tests::~tests()
 
 int tests::run()
 {
-    
+    rep();
     return 0;
 }
 
@@ -25,8 +25,8 @@ tea::rep::code_t tests::rep()
 {
     using tea::rep;
     //rep::diagnostic(SRC_LOCATION), rep::noop;
-    DIAGNOSTIC, rep::noop;
+    DIAGNOSTIC, rep::ok;
 
-    rep::clear([](tea::rep& r) {std::cout << r() << '\n'; });
+    rep::clear([](rep& r) {std::cout << r() << '\n'; });
     return rep::ok;
 }

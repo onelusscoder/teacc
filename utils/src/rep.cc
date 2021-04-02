@@ -76,12 +76,11 @@ namespace tea
             {"info"},
             {"message"},
             {"debug"},
-            {"syntax"},
+            {"syntax error"},
             {"diagnostic"},
             {"expected"},
             {"unexpected"},
-            {"exception"},
-            {"syntax error"}
+            {"exception"}
         };
         return _[t_-1];
     }
@@ -153,8 +152,12 @@ namespace tea
     {
     
         std::string str;
-
-        return std::string();
+        while (!_d.empty())
+        {
+            str += _d.top();
+            _d.pop();
+        }
+        return str;
     }
 
 
