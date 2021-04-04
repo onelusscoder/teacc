@@ -51,7 +51,7 @@ namespace tea
         // -----------------------------------------------------------
 
     private:
-        std::stack<std::string> _d;
+        std::vector<std::string> _d;
         rep::code_t             _code = 0;
         rep::type_t             _type = 0;
         static rep::section_t   _sections;
@@ -86,7 +86,7 @@ namespace tea
         {
             std::ostringstream os;
             os << v;
-            _d.push(os.str());
+            _d.push_back(os.str());
             return *this;
         }
 

@@ -24,9 +24,10 @@ int tests::run()
 tea::rep::code_t tests::rep()
 {
     using tea::rep;
-    //rep::diagnostic(SRC_LOCATION), rep::noop;
-    DIAGNOSTIC, rep::ok;
-
-    rep::clear([](rep& r) {std::cout << r() << '\n'; });
+    DIAGNOSTIC;
+    rep::debug(), "testing and checking output formats...";
+    rep::clear([](rep& r) {
+        std::cout << r() << '\n'; 
+    });
     return rep::ok;
 }

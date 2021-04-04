@@ -16,10 +16,7 @@ namespace tea
 
     rep::~rep()
     {
-        if (!_d.empty())
-        {
-            while (!_d.empty()) _d.pop();
-        }
+        
     }
 
     rep& rep::debug(std::string_view section_name_)
@@ -103,30 +100,51 @@ namespace tea
     std::string rep::location_data(std::array<const char*,3> data_)
     {
         std::string buffer;
-        std::vector<std::string> table = {"file:","function:","line:"};
+        //std::vector<std::string> table = {"file:","function:","line:"};
         int i = 0;
-        for (auto s : data_)
+       
+        utils::string_t str;
+        utils::string_t::word::list_t words;
+        if (data_[0])
         {
-            if (!data_.empty())
+            str = data_[0];
+        #ifdef _WIN32
+            auto sz = str.words(words, "\\", true);
+        #else
+            auto sz = str.words(words, "/", true);
+        #endif
+            if (sz)
             {
-                buffer += table[i].data();
-                buffer += s;
-                buffer += '\n'; //@ todo : insert format-agnostic end of line here.
+                buffer += "    file:";
+                buffer += words.back()();
+                buffer += '\n';
             }
-            ++i;
+        }
+        if (data_[1])
+        {
+            buffer += "function:";
+            buffer += data_[1];
+            buffer += '\n';
+        }
+        if (data_[2])
+        {
+            buffer += "    line:";
+            buffer += data_[2];
+            buffer += '\n';
         }
         return buffer;
     }
 
+
     rep& rep::operator,(rep::code_t c_)
     {
-        _d.push(rep::str(c_));
+        _d.push_back(rep::str(c_-1));
         return *this;
     }
 
     rep& rep::operator,(rep::type_t t_)
     {
-        _d.push(rep::str(t_));
+        _d.push_back(rep::str((rep::type_t)(t_-1)));
         return *this;
     }
 
@@ -141,9 +159,8 @@ namespace tea
                     if (f_) 
                         f_(r); 
                 }
-                m.second.clear();
-            }
-            
+               // m.second.clear();
+            } 
         }
         rep::_sections.clear();
     }
@@ -152,11 +169,8 @@ namespace tea
     {
     
         std::string str;
-        while (!_d.empty())
-        {
-            str += _d.top();
-            _d.pop();
-        }
+        for(auto s : _d)  str += s;
+        _d.clear();
         return str;
     }
 

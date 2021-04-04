@@ -414,7 +414,7 @@ namespace tea::utils
 
         while (!Crs.End())
         {
-            if (!wcollection.empty());
+            //if (!wcollection.empty());
             std::string::const_iterator cc = Crs.C;
             if (token_separators.find(*Crs.C) != string::npos)
             {
