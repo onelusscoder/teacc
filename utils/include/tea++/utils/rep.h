@@ -5,8 +5,8 @@
 #include <stack>
 #include <vector>
 #include <unordered_map>
-#include <string_view>
 #include <array>
+#include <string_view>
 
 
 namespace tea
@@ -20,7 +20,7 @@ namespace tea
     {
     public:
         using list_t = std::vector<rep>;
-        using section_t = std::unordered_map<std::string_view, rep::list_t>;
+        using section_t = std::unordered_map<std::string, rep::list_t>;
         using    type_t = uint8_t;
         using    code_t = uint32_t;
 
@@ -70,7 +70,7 @@ namespace tea
         static rep& debug(std::string_view section_name_);
         static rep& debug();
 
-        static rep& diagnostic(std::string_view header_);
+        static rep& diagnostic(std::string header_);
 
         static rep& error(std::string_view section_name_);
         static rep& error();
@@ -78,7 +78,7 @@ namespace tea
         static std::string str(rep::type_t);
         static std::string str(rep::code_t);
 
-        static std::string_view location_data(std::array<std::string_view,3> header_);
+        static std::string location_data(std::array<const char*,3> header_);
         rep& operator,(rep::code_t);
         rep& operator,(rep::type_t);
 

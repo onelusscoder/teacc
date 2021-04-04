@@ -24,7 +24,7 @@ namespace tea
 
     rep& rep::debug(std::string_view section_name_)
     {
-        rep::list_t& list = rep::_sections[section_name_];
+        rep::list_t& list = rep::_sections[section_name_.data()];
         list.push_back(rep{});
         rep& r = list.back();
         r._type = rep::debug_type;
@@ -40,7 +40,7 @@ namespace tea
         return list.back();
     }
 
-    rep& rep::diagnostic(std::string_view header_)
+    rep& rep::diagnostic(std::string header_)
     {
         rep::list_t& list = rep::_sections["main"];
         list.push_back(rep{});
@@ -52,7 +52,7 @@ namespace tea
 
     rep& rep::error(std::string_view section_name_)
     {
-        rep::list_t& list = rep::_sections[section_name_];
+        rep::list_t& list = rep::_sections[section_name_.data()];
         list.push_back(rep{});
         rep& r = list.back();
         r._type = rep::error_type;
@@ -100,22 +100,22 @@ namespace tea
         return _[c_];
     }
 
-    std::string_view rep::location_data(std::array<std::string_view,3> data_)
+    std::string rep::location_data(std::array<const char*,3> data_)
     {
         std::string buffer;
-        std::vector<std::string_view> table = {"file:","function:","line:"};
+        std::vector<std::string> table = {"file:","function:","line:"};
         int i = 0;
         for (auto s : data_)
         {
             if (!data_.empty())
             {
-                buffer += table[i];
-                buffer += data_[i].data();
+                buffer += table[i].data();
+                buffer += s;
                 buffer += '\n'; //@ todo : insert format-agnostic end of line here.
             }
+            ++i;
         }
-        std::string_view sv = buffer.c_str();
-        return sv;
+        return buffer;
     }
 
     rep& rep::operator,(rep::code_t c_)
