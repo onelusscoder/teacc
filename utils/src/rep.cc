@@ -135,6 +135,15 @@ namespace tea
         return buffer;
     }
 
+    rep& rep::header(std::array<const char*, 3> header_)
+    {
+        rep::list_t& list = rep::_sections["main"];
+        list.push_back({});
+        rep& r = list.back();
+        r._type = rep::debug_type;
+        return list.back();
+    }
+
 
     rep& rep::operator,(rep::code_t c_)
     {

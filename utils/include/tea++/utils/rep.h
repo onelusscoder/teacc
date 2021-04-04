@@ -79,6 +79,8 @@ namespace tea
         static std::string str(rep::code_t);
 
         static std::string location_data(std::array<const char*,3> header_);
+        static rep& header(std::array<const char*, 3> header_);
+
         rep& operator,(rep::code_t);
         rep& operator,(rep::type_t);
 
