@@ -152,12 +152,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\tea++\utils\dll.h" />
+    <ClInclude Include="include\tea++\utils\logger.h" />
     <ClInclude Include="include\tea++\utils\rep.h" />
     <ClInclude Include="include\tea++\utils\string_t.h" />
+    <ClInclude Include="include\tea++\utils\text.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\logger.cc" />
     <ClCompile Include="src\rep.cc" />
     <ClCompile Include="src\string_t.cc" />
+    <ClCompile Include="src\text.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
