@@ -4,7 +4,7 @@ namespace tea
 {
     logger::~logger()
     {
-        _str.clear();
+        str.clear();
     }
 
     logger& logger::operator<<(colors fg_)
@@ -22,6 +22,18 @@ namespace tea
     {
         str += d_;
         return *this;
+    }
+
+    logger& logger::operator<<(logger::object_t)
+    {
+        //...
+        return *this;
+    }
+
+    rep::code_t logger::th_context_t::clear()
+    {
+        //...
+        return rep::ok;
     }
 
 }
