@@ -19,7 +19,7 @@ namespace tea
         logger& operator << (const std::string& d_);
 
 
-        enum class object_t : uint8_t
+        enum object_t : uint8_t
         {
             begin,
             header,
