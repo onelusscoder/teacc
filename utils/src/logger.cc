@@ -24,7 +24,19 @@ namespace tea
         return *this;
     }
 
-    logger& logger::operator<<(logger::object_t)
+    logger& logger::operator<<(rep::type_t t_)
+    {
+        str += rep::str(t_);
+        return *this;
+    }
+
+    logger& logger::operator<<(rep::code_t c_)
+    {
+        str += rep::str(c_);
+        return *this;
+    }
+
+    logger& logger::operator<<(logger::object_t o_)
     {
         //...
         return *this;

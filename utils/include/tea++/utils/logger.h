@@ -10,7 +10,7 @@ namespace tea
 
     struct TEAUTILS logger
     {
-        std::string str; ///< rendering output accumulated text
+        utils::string_t str; ///< rendered output accumulated text
         rep::type_t type = rep::debug_type; ///< default log entry type is debug...
         logger() = default;
         ~logger();
@@ -36,6 +36,9 @@ namespace tea
             none
         };
 
+        logger& operator << (rep::type_t);
+        logger& operator << (rep::code_t);
+
         template<typename T> logger& operator << (T& d_)
         {
             std::ostringstream os;
@@ -46,6 +49,9 @@ namespace tea
 
         logger& operator << (logger::object_t);
     private:
+        /// <summary>
+        /// Protect config data in multitrhead:
+        /// </summary>
         struct th_context_t
         {
             logger::format_t    format  = logger::format_t::ansi;
