@@ -33,6 +33,7 @@ namespace tea
         {
             ansi,
             html,
+            // ...
             none
         };
 
