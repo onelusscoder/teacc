@@ -268,19 +268,19 @@ namespace tea
 
 
 
-std::string tea::text::ansi(tea::colors C_, tea::colors BG_OR_OOB)
+std::string tea::text::ansi(tea::text::color C_, tea::text::color BG_OR_OOB)
 {
-    tea::utils::string_t str = (BG_OR_OOB != tea::colors::OOB ? "\033[38;5;%dm\033[48;5;%dm" : "\033[38;5;%dm");
+    tea::utils::string_t str = (BG_OR_OOB != tea::text::color::OOB ? "\033[38;5;%dm\033[48;5;%dm" : "\033[38;5;%dm");
     
     str << static_cast<uint16_t>(C_);
     
-    if(BG_OR_OOB != tea::colors::OOB)
+    if(BG_OR_OOB != text::color::OOB)
         str << static_cast<uint16_t>(BG_OR_OOB);
 
     return str();
 }
 
-std::string tea::text::html_color(tea::colors C_)
+std::string tea::text::html_color(tea::text::color C_)
 {
     tea::utils::string_t str = "<span color=\"%s\">";
     str << tea::html_colors[static_cast<uint16_t>(C_)];

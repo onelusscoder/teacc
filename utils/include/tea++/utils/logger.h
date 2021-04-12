@@ -15,7 +15,7 @@ namespace tea
         logger() = default;
         ~logger();
 
-        logger& operator << (colors fg_);
+        logger& operator << (text::color fg_);
         logger& operator << (const std::string& d_);
 
 

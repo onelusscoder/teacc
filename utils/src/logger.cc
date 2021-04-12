@@ -7,7 +7,7 @@ namespace tea
         str.clear();
     }
 
-    logger& logger::operator<<(colors fg_)
+    logger& logger::operator<<(text::color fg_)
     {
         /// <summary>
         /// @todo hold text format config...
