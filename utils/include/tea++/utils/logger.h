@@ -22,6 +22,9 @@ namespace tea
         enum object_t : uint8_t
         {
             begin,
+            fn,
+            ffn,
+            line,
             header,
             code,
             timestamp,
@@ -35,6 +38,14 @@ namespace tea
             html,
             // ...
             none
+        };
+
+        struct header_data
+        {
+            std::string title;
+            std::string time_text;
+            std::string function_data;
+            //...
         };
 
         logger& operator << (rep::type_t);
@@ -72,4 +83,7 @@ namespace tea
 }
 
 
-
+#define Log     tea::logger
+#define LogF    tea::logger << tea::logger::object_t::header << tea::logger::object_t::fn
+#define LogFn   tea::logger << tea::logger::object_t::header << tea::logger::object_t::ffn
+#define LogLFn  tea::logger << tea::logger::object_t::header << tea::logger::object_t::ffn << tea::logger::object_t::line
