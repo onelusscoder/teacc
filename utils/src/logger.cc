@@ -7,13 +7,14 @@ namespace tea
         str.clear();
     }
 
+    /// <summary>
+    /// @todo hold text format config...
+    /// </summary>
+    /// <param name="fg_"></param>
+    /// <returns>self instance reference</returns>
     logger& logger::operator<<(text::color fg_)
     {
-        /// <summary>
-        /// @todo hold text format config...
-        /// </summary>
-        /// <param name="fg_"></param>
-        /// <returns>self instance reference</returns>
+        
         str += text::ansi(fg_);
         return *this;
     }
