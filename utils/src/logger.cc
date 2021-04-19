@@ -43,10 +43,5 @@ namespace tea
         return *this;
     }
 
-    rep::code_t logger::th_context_t::clear()
-    {
-        //...
-        return rep::ok;
-    }
-
+   
 }
