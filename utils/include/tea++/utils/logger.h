@@ -48,6 +48,7 @@ namespace tea
             //...
         };
 
+
         logger& operator << (rep::type_t);
         logger& operator << (rep::code_t);
 
@@ -60,23 +61,7 @@ namespace tea
         }
 
         logger& operator << (logger::object_t);
-    private:
-        /// <summary>
-        /// Protect config data in multitrhead:
-        /// </summary>
-        struct th_context_t
-        {
-            logger::format_t    format  = logger::format_t::ansi;
-            std::string         file_name;
-            std::ofstream*      out_ptr = nullptr;
-            std::thread::id     th_id;
-            std::mutex          mtx;
-
-            rep::code_t clear();
-
-            //...
-
-        };
+ 
     };
 
 
