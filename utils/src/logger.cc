@@ -39,7 +39,11 @@ namespace tea
 
     logger& logger::operator<<(logger::object_t o_)
     {
-        //...
+        switch (o_)//...
+        {
+            case logger::end:
+
+        }
         return *this;
     }
 

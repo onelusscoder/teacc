@@ -30,6 +30,10 @@ tea::rep::code_t tests::rep()
     std::cout << tea::text::ansi(tea::text::color::GreenYellow) << "GreenYellow!\n";
     std::cout << tea::text::ansi(tea::text::color::Aquamarine3) << "Aquamarine3!\n";
     std::cout << tea::text::ansi(tea::text::color::Fuchsia) << "Fuchsia!\n";
+    std::cout << tea::text::ansi(tea::text::color::BlueViolet) << "BlueViolet\n";
+    std::cout << tea::text::ansi(tea::text::color::DeepPink4) << " DeepPink4\n";
+    std::cout << tea::text::ansi(tea::text::color::DeepPink5) << "DeepPink5\n";
+    std::cout << tea::text::ansi(tea::text::color::SkyBlue2) << "SkyBlue2\n";
     return  tea::rep::ok;
 
     //using tea::rep;

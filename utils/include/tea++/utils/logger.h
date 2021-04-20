@@ -18,6 +18,11 @@ namespace tea
         logger& operator << (text::color fg_);
         logger& operator << (const std::string& d_);
 
+        struct context_t
+        {
+            std::ostream* file_ptr = nullptr;
+            std::string   filename;
+        };
 
         enum object_t : uint8_t
         {
@@ -48,6 +53,13 @@ namespace tea
             //...
         };
 
+        struct context_t
+        {
+            std::ostream*       file_ptr = nullptr;
+            std::string         filename;
+            logger::format_t    format = logger::format_t::ansi;
+            //...
+        };
 
         logger& operator << (rep::type_t);
         logger& operator << (rep::code_t);
