@@ -73,8 +73,11 @@ namespace tea
         logger& operator << (logger::object_t);
 
     private:
+        void flush();
         static context_t::list_t  contexts;
         static context_t*         m_current_context;
+        context_t* m_this_context = nullptr;
+
 
     };
 

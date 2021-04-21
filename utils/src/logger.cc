@@ -18,11 +18,6 @@ namespace tea
         _text.clear();
     }
 
-    /// <summary>
-    /// @todo hold text format config...
-    /// </summary>
-    /// <param name="fg_"></param>
-    /// <returns>self instance reference</returns>
     logger& logger::operator<<(text::color fg_)
     {
         
@@ -50,12 +45,33 @@ namespace tea
 
     logger& logger::operator<<(logger::object_t o_)
     {
-        //switch (o_)//...
-        //{
-        //    case logger::end:
-
-        //}
+        switch (o_)//...
+        {
+            case logger::object_t::eol:
+            {
+                switch (logger::m_current_context->format)
+                {
+                    case logger::format_t::ansi:
+                        _text += '\n';
+                        break;
+                    default:
+                        _text += '\n';
+                        break;
+                }
+                break;
+            }
+            case logger::end:
+                flush();
+                break;
+            default:
+                break;
+        }
         return *this;
+    }
+
+    void logger::flush()
+    {
+
     }
 
    
