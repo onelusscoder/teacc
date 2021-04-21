@@ -2,13 +2,20 @@
 
 namespace tea
 {
+
+
+
+    logger::context_t::list_t logger::contexts = {
+        {"main", {nullptr,"",logger::format_t::ansi}}
+    };
+
     logger::logger(std::string_view ctx_name)
     {
 
     }
     logger::~logger()
     {
-        str.clear();
+        _text.clear();
     }
 
     /// <summary>
@@ -19,35 +26,35 @@ namespace tea
     logger& logger::operator<<(text::color fg_)
     {
         
-        str += text::ansi(fg_);
+        _text += text::ansi(fg_);
         return *this;
     }
 
     logger& logger::operator<<(const std::string& d_)
     {
-        str += d_;
+        _text += d_;
         return *this;
     }
 
     logger& logger::operator<<(rep::type_t t_)
     {
-        str += rep::str(t_);
+        _text += rep::str(t_);
         return *this;
     }
 
     logger& logger::operator<<(rep::code_t c_)
     {
-        str += rep::str(c_);
+        _text += rep::str(c_);
         return *this;
     }
 
     logger& logger::operator<<(logger::object_t o_)
     {
-        switch (o_)//...
-        {
-            case logger::end:
+        //switch (o_)//...
+        //{
+        //    case logger::end:
 
-        }
+        //}
         return *this;
     }
 

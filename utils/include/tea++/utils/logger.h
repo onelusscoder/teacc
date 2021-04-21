@@ -66,7 +66,7 @@ namespace tea
         {
             std::ostringstream os;
             os << d_;
-            _str += os.str();
+            _text += os.str();
             return *this;
         }
 
