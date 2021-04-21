@@ -4,26 +4,23 @@
 #include <tea++/utils/rep.h>
 #include <thread>
 #include <mutex>
+#include <map>
 
 namespace tea
 {
 
-    struct TEAUTILS logger
+    class TEAUTILS logger
     {
-        utils::string_t str; ///< rendered output accumulated text
-        rep::type_t type = rep::debug_type; ///< default log entry type is debug...
+        utils::string_t _text; ///< rendered output accumulated text
+        rep::type_t     _type = rep::debug_type; ///< default log entry type is debug...
+    public:
         logger() = default;
+        logger(std::string_view ctx_name);
         ~logger();
 
         logger& operator << (text::color fg_);
         logger& operator << (const std::string& d_);
-
-        struct context_t
-        {
-            std::ostream* file_ptr = nullptr;
-            std::string   filename;
-        };
-
+    public:
         enum object_t : uint8_t
         {
             begin,
@@ -52,15 +49,16 @@ namespace tea
             std::string function_data;
             //...
         };
-
+    private:
         struct context_t
         {
+            using list_t = std::map<std::string, context_t>;
             std::ostream*       file_ptr = nullptr;
             std::string         filename;
             logger::format_t    format = logger::format_t::ansi;
             //...
         };
-
+    public:
         logger& operator << (rep::type_t);
         logger& operator << (rep::code_t);
 
@@ -68,12 +66,16 @@ namespace tea
         {
             std::ostringstream os;
             os << d_;
-            str += os.str();
+            _str += os.str();
             return *this;
         }
 
         logger& operator << (logger::object_t);
- 
+
+    private:
+        static context_t::list_t  contexts;
+        static context_t*         m_current_context;
+
     };
 
 

@@ -2,6 +2,10 @@
 
 namespace tea
 {
+    logger::logger(std::string_view ctx_name)
+    {
+
+    }
     logger::~logger()
     {
         str.clear();
